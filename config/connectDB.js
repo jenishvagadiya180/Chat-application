@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import { userModel, messageModel } from "../models/index.js";
 dotenv.config();
 
-const env = process.env.NODE_ENV || "development";
 const database = process.env.DATABASE_NAME;
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
@@ -29,12 +28,6 @@ message.belongsTo(user, {
   targetKey: "id",
   foreignKey: "receiver",
 });
-
-// task.belongsTo(taskCategory, {
-//   as: "taskBelongsTotaskCategory",
-//   targetKey: "id",
-//   foreignKey: "taskCategoryId",
-// });
 
 const connectDatabase = async () => {
   try {

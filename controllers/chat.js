@@ -1,5 +1,4 @@
 import { services, message, statusCode } from "../helper/index.js";
-import { sequelize, Sequelize } from "../config/connectDB.js";
 import { RequestError } from "../error/index.js";
 import { UserService, ChatService } from "../services/index.js";
 

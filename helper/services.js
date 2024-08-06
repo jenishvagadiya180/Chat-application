@@ -36,52 +36,6 @@ class services {
     }
   };
 
-  static regexSearch = (search, keys) => {
-    let filter = { isDeleted: false };
-
-    if (search) {
-      filter.$or = keys.map((key) => {
-        return {
-          [key]: {
-            $regex: search,
-            $options: "i",
-          },
-        };
-      });
-    }
-    return filter;
-  };
-
-  static paginationAndSorting = (query, defaultSortField) => {
-    // pagination
-    const { pageNumber, perPage, sortField, sortType } = query;
-    let page = pageNumber ? parseInt(pageNumber) : 1;
-    let limit = perPage ? parseInt(perPage) : 10;
-    // Sorting
-    let sortObj =
-      sortField && sortType == "asc"
-        ? { [sortField]: 1 }
-        : sortField && sortType == "desc"
-        ? { [sortField]: -1 }
-        : { [defaultSortField]: 1 };
-    return {
-      page,
-      skipRecord: (page - 1) * limit,
-      limit,
-      sortObj,
-    };
-  };
-
-  static paginateResponse = (data, { page, limit }, totalRecord) => {
-    const dataList = {};
-    dataList.list = data;
-    dataList.page = page;
-    dataList.limit = limit;
-    dataList.totalCount = totalRecord;
-    dataList.totalPage = Math.ceil(totalRecord / limit);
-    return dataList;
-  };
-
   static userTokenGenerate = async (payload, expireTime) => {
     const token = jwt.sign(payload, process.env.SECURITY_KEY, {
       expiresIn: expireTime,

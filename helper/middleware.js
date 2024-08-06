@@ -1,5 +1,4 @@
 import { services, statusCode, message } from "../helper/index.js";
-import { userModel } from "../models/index.js";
 import { RequestError } from "../error/error.js";
 import { sequelize } from "../config/connectDB.js";
 const models = sequelize.models;

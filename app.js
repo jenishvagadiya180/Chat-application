@@ -62,7 +62,6 @@ wss.on("connection", (ws, request) => {
       });
 
       const recipientSocket = users[data.sendTo];
-
       if (recipientSocket && recipientSocket.readyState === ws.OPEN) {
         recipientSocket.send(
           JSON.stringify({
